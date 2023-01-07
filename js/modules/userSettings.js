@@ -1,0 +1,42 @@
+export default class UserSettings {
+    constructor(login, password, confirmPassword, generate, showPw, bio, exitBtn, saveBtn) {
+        this.login = document.querySelector(login);
+        this.password = document.querySelector(password);
+        this.confirmPassword = document.querySelector(confirmPassword);
+        this.generate = document.querySelector(generate);
+        this.showPw = document.querySelector(showPw);
+        this.bio = document.querySelector(bio);
+        this.exitBtn = document.querySelector(exitBtn);
+        this.saveBtn = document.querySelector(saveBtn);
+    }
+
+    userSettings() {
+        this.generate.addEventListener('click', () => {
+            let symbols = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 1, 2, 3, 4, 5, 6, 7, 8, 9];
+            let generatePassword = '';
+
+            for (let i = 0; i < 8; i++) {
+                let num = Math.floor(Math.random() * symbols.length);
+                generatePassword += symbols[num];
+            }
+
+            if(this.generate.checked) {
+                this.password.value = generatePassword;
+                this.confirmPassword.value = generatePassword;
+            } else {
+                this.password.value = '';
+                this.confirmPassword.value = '';
+            }
+        });
+
+        this.showPw.addEventListener('click', () => {
+            if(this.showPw.checked) {
+                this.password.setAttribute('type', 'text');
+                this.confirmPassword.setAttribute('type', 'text');
+            } else {
+                this.password.setAttribute('type', 'password');
+                this.confirmPassword.setAttribute('type', 'password');
+            }
+        });
+    }
+}

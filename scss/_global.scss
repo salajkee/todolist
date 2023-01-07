@@ -1,0 +1,26 @@
+html,
+body {
+    height: 100%;
+    font-family: 'Montserrat';
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 1240px;
+    margin: 0 auto;
+}
+
+$textColor: #414141;
+$blueColor: #1CB9FC;
+$statusDone: #70C05B;
+$defaultStatus: #FCA21C;
+$primaryStatus: #FF6633;
+$errorStatus: #D80000;
+$backgroundColor: #F4F4F2;
+$gray: #8F8F8F;
+$white: #ffffff;
+
+
+body {
+    background-color: $backgroundColor;
+}

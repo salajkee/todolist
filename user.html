@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDoList</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="user__wrapper">
+        <p class="user__title">Settings</p>
+        <form class="user__form" action="#">
+            <div class="user__form-block">
+                <label for="user-login">Login</label>
+                <input class="user__form-login" type="text" id="user-login" placeholder="Login">
+            </div>
+            <div class="user__form-block">
+                <label for="user-password">Password</label>
+                <input class="user__form-pw" type="password" id="user-password" placeholder="Password">
+            </div>
+            <div class="user__form-block">
+                <label for="user-confirm-pw">Confirm password</label>
+                <input class="user__form-pw-confirm" type="password" id="user-confirm-pw" placeholder="Confirm password">
+            </div>
+            <div class="user__form-block">
+                <input class="user__form-generate user__form-checkbox" type="checkbox" name="userGenerateCheckbox">
+                <label for="userGenerateCheckbox">Generate</label>
+            </div>
+            <div class="user__form-block">
+                <input class="user__form-showpw user__form-checkbox" type="checkbox" name="userShowPasswordCheckbox">
+                <label for="userShowPasswordCheckbox">Show Password</label>
+            </div>
+            <div class="user__form-block">
+                <textarea class="user__form-bio" name="userAbout"></textarea>
+            </div>
+            <div class="user__form-block">
+                <button class="user__form-exitBtn">Exit</button>
+                <button class="user__form-saveBtn">Save</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="js/script.js" type="module"></script>
+</body>
+</html>

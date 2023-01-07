@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDoList</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="permissions">
+        <div class="permissions__wrapper">
+            <a href="notes.html" class="permissions__back-btn">Back</a>
+            <div class="permissions__users">
+                <p class="permissions__users-title">User list</p>
+                <ol class="permissions__users-list">
+                    
+                </ol>
+            </div>
+            <div class="permissions__adduser">
+                <p class="permissions__adduser-title">Add new user</p>
+                <form action="#" class="permissions__adduser-form">
+                    <input class="permissions__adduser-form-input permissions__adduser-form-login" type="text" placeholder="Login">
+                    <input class="permissions__adduser-form-input permissions__adduser-form-password" type="password" placeholder="Password">
+                    <div class="permissions__adduser-form-block">
+                        <input id="permissions__adduser-form-showpw" type="checkbox">
+                        <label for="permissions__adduser-form-showpw">Show Password</label>
+                    </div>
+                    <div class="permissions__adduser-form-block">
+                        <input id="permissions__adduser-form-makeadmin" type="checkbox">
+                        <label for="permissions__adduser-form-makeadmin">Make admin</label>
+                    </div>
+                    <div class="permissions__adduser-form-block">
+                        <input id="permissions__adduser-form-generate" type="checkbox">
+                        <label for="permissions__adduser-form-generate">Generate</label>
+                    </div>
+                    <button class="permissions__adduser-form-btn">Add user</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js" type="module"></script>
+</body>
+</html>

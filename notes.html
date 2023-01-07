@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDoList</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="wrapper">
+        <header class="header">
+            <a href="#" class="header__logo">Tasks</a>
+            <form action="#" class="header__form">
+                <input class="header__form-date" type="date">
+                <input class="header__form-note" type="text" placeholder="Add note...">
+                <input class="header__form-checkbox" type="checkbox">
+                <button class="header__form-btn" type="submit">Add note</button>
+            </form>
+            <div class="header__profile">
+                <div class="header__profile-icon">
+                    <svg class="user-icon">
+                        <use xlink:href="sprite.svg#user-icon"></use>
+                    </svg>
+                </div>
+                <p class="header__profile-name">admin</p>
+                <ul class="header__profile-submenu">
+                    <li class="header__profile-submenu-list">
+                        <a href="#" class="header__profile-submenu-link">Logout</a>
+                    </li>
+                    <li class="header__profile-submenu-list">
+                        <a href="user.html" class="header__profile-submenu-link">My profile</a>
+                    </li>
+                    <li class="header__profile-submenu-list">
+                        <a href="#" class="header__profile-submenu-link">Permissions</a>
+                    </li>
+                </ul>                
+            </div>
+        </header>
+        <main class="main">
+            <div class="tabs">
+                <ul class="tabs__nav">
+                    <li class="tabs__nav-item tabs__nav-item-active">
+                        All Tasks
+                    </li>
+                    <li class="tabs__nav-item">
+                        Category
+                    </li>
+                </ul>
+                
+                <div class="tabs__content" id="tasks">
+                    <div class="task">
+                        <input class="task__search" type="text" placeholder="Search...">
+                        <ul class="task__items">
+                            
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tabs__content hide" id="category">
+                    <div class="category">
+                        <div class="category__col category__inProcess">
+                            <div class="category__col-title">In process</div>
+                            
+                        </div>
+                        <div class="category__col category__important">
+                            <div class="category__col-title">Important</div>
+
+                        </div>
+                        <div class="category__col category__done">
+                            <div class="category__col-title">Done</div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <div class="popup-notice">
+            <p class="popup-notice__text"></p>
+        </div>
+        <div class="modal-edit">
+            <div class="overlay"></div>
+            <div class="modal-edit__wrapper">
+                <form action="#" class="modal-edit__form">
+                    <input type="text" class="modal-edit__input">
+                    <input type="date" class="modal-edit__date">
+                    <button class="modal-edit__close-btn">Exit</button>
+                    <button type="submit" class="modal-edit__save-btn">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js" type="module"></script>
+
+</body>
+</html>
