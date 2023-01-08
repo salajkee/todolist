@@ -38,5 +38,23 @@ export default class UserSettings {
                 this.confirmPassword.setAttribute('type', 'password');
             }
         });
+
+        this.saveBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            let usersData = JSON.parse(localStorage.getItem('users'));
+            if(this.login !== currentUser.login) {
+                for (let i = 0; i < usersData.length; i++) {
+                    if(currentUser.login === usersData[i].login) {
+                        usersData[i].login = this.login.value;
+                        usersData[i].password = this.password.value;
+                        currentUser.login = this.login.value;
+                        currentUser.password = this.password.value;
+                        localStorage.setItem('users', JSON.stringify(usersData));
+                        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                    }
+                }
+            }
+        });
     }
 }

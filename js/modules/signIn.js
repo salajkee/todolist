@@ -1,26 +1,30 @@
 export default class SignIn {
-    constructor(authForm) {
-        this.authForm = document.querySelector(authForm);
+    constructor(signInForm) {
+        this.form = document.querySelector(signInForm);
     }
 
     signIn() {
-        let users = [];
-        let user = {
-            login: admin,
-            password: admin
-        }
-        // this.authForm.addEventListener('click', function(event) {
-        //     event.preventDefault();
-        //     let target = event.target;
-        //     if(target.classList.contains('auth__form-btn')) {
-        //         let users = JSON.parse(localStorage.getItem('users'));
-        //         for (let i = 0; i < users.length; i++) {
-        //             if(this.children[0].value === users[i].login && this.children[1].value === users[i].password) {
-        //                 location.href('notes.html');
-        //                 console.log('qwe');
-        //             }
-        //         }
-        //     }
-        // });
+        this.form.addEventListener('click', function(e) {
+            let target = e.target;
+            if(target.classList.contains('signin__form-btn')) {
+                e.preventDefault();
+                if(localStorage.getItem('users')) {
+                    let users = JSON.parse(localStorage.getItem('users'));
+                    let login = this.children[0].value;
+                    let password = this.children[1].value;
+                    for (let i = 0; i < users.length; i++) {
+                        if(login === users[i].login && password === users[i].password) {
+                            let currentUser = {
+                                login: login,
+                                password: password
+                            }
+                            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                            this.reset();
+                            location.href="notes.html";
+                        }
+                    }
+                }
+            }
+        });
     }
 }

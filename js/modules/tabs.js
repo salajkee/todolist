@@ -1,6 +1,7 @@
 export default class Tabs {
     constructor(tabs, tabsContent, tabsWrapper) {
         this.tabs = document.querySelectorAll(tabs);
+        this.tabsItem = tabs.slice(1);
         this.tabsContent = document.querySelectorAll(tabsContent);
         this.tabsWrapper = document.querySelector(tabsWrapper);
     }
@@ -12,21 +13,21 @@ export default class Tabs {
         });
     
         this.tabs.forEach(tab => {
-            tab.classList.remove('tabs__nav-item-active');
+            tab.classList.remove(`${this.tabsItem}-active`);
         });
     }
     
     showTabContent(i = 0) {
         this.tabsContent[i].classList.add('show');
         this.tabsContent[i].classList.remove('hide');
-        this.tabs[i].classList.add('tabs__nav-item-active');
+        this.tabs[i].classList.add(`${this.tabsItem}-active`);
     }
 
     tab() {
         this.tabsWrapper.addEventListener('click', (event) => {
             let target = event.target;
 
-            if(target.classList.contains('tabs__nav-item')) {
+            if(target.classList.contains(this.tabsItem)) {
                 this.tabs.forEach((tab, i) => {
                     if(target === tab) {
                         this.hideTabContent();

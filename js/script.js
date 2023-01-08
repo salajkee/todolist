@@ -9,13 +9,19 @@ import DragDrop from './modules/dragDrop.js';
 import SearchTask from './modules/searchNote.js';
 import EditNote from './modules/editNote.js'
 import SignIn from './modules/signIn.js'
+import SignUp from './modules/signUp.js'
 import UserSettings from './modules/userSettings.js'
-import Permissions from './modules/permissions.js'
+import Permissions from './modules/permissions.js';
 
 window.addEventListener('DOMContentLoaded', () => {
     try {
         let tabs = new Tabs('.tabs__nav-item', '.tabs__content', '.tabs__nav');
         tabs.tab();
+    } catch(e) {}
+
+    try {
+        let authTabs = new Tabs('.auth__tabs-nav-item', '.auth__tabs-content', '.auth__tabs-nav');
+        authTabs.tab();
     } catch(e) {}
 
     try {
@@ -64,8 +70,13 @@ window.addEventListener('DOMContentLoaded', () => {
     } catch(e){}
 
     try {
-        let signIn = new SignIn('.auth__form');
+        let signIn = new SignIn('.signin__form');
         signIn.signIn();
+    } catch(e){}
+
+    try {
+        let signUp = new SignUp('.signup__form');
+        signUp.signUp();
     } catch(e){}
 
     try {
@@ -91,4 +102,20 @@ window.addEventListener('DOMContentLoaded', () => {
                                             '.permissions__adduser-form-btn');
         permissions.permissions();
     } catch(e){}
+
+    try {
+        let profileName = document.querySelector('.header__profile-name');
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        profileName.textContent = currentUser.login;
+    } catch(e) {}
+
+    try {
+        let userLogin = document.querySelector('.user__form-login');
+        let userPassword = document.querySelector('.user__form-pw');
+        let userConfirmPassword = document.querySelector('.user__form-pw-confirm');
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        userLogin.value = currentUser.login;
+        userPassword.value = currentUser.password;
+        userConfirmPassword.value = currentUser.password;
+    } catch(e) {}
 });

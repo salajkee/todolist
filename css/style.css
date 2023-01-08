@@ -676,14 +676,52 @@ body {
   height: 45px;
   fill: #ffffff;
 }
-.auth__form {
+.auth__tabs-nav {
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  list-style: none;
+}
+.auth__tabs-nav-item {
+  font-weight: 400;
+  color: #414141;
+  cursor: pointer;
+}
+.auth__tabs-nav-item:first-of-type {
+  margin-right: 30px;
+}
+.auth__tabs-nav-item-active {
+  font-weight: 500;
+  color: #1CB9FC;
+  position: relative;
+}
+.auth__tabs-nav-item-active::before {
+  content: "";
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  background-color: #1CB9FC;
+}
+.auth__tabs-content {
+  margin-top: 25px;
+}
+.auth__form, .auth .signup__form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
-.auth__form-login, .auth__form-pw {
+.auth__form-login, .auth__form-pw, .auth .signup__form-login, .auth .signup__form-pw {
   width: 250px;
   height: 40px;
   padding: 5px 20px;
@@ -694,35 +732,44 @@ body {
   border: 1px solid #8F8F8F;
   border-radius: 5px;
 }
-.auth__form-login::-webkit-input-placeholder, .auth__form-pw::-webkit-input-placeholder {
+.auth__form-login::-webkit-input-placeholder, .auth__form-pw::-webkit-input-placeholder, .auth .signup__form-login::-webkit-input-placeholder, .auth .signup__form-pw::-webkit-input-placeholder {
   font-size: 14px;
   font-weight: 500;
   color: #8F8F8F;
 }
-.auth__form-login::-moz-placeholder, .auth__form-pw::-moz-placeholder {
+.auth__form-login::-moz-placeholder, .auth__form-pw::-moz-placeholder, .auth .signup__form-login::-moz-placeholder, .auth .signup__form-pw::-moz-placeholder {
   font-size: 14px;
   font-weight: 500;
   color: #8F8F8F;
 }
-.auth__form-login:-ms-input-placeholder, .auth__form-pw:-ms-input-placeholder {
+.auth__form-login:-ms-input-placeholder, .auth__form-pw:-ms-input-placeholder, .auth .signup__form-login:-ms-input-placeholder, .auth .signup__form-pw:-ms-input-placeholder {
   font-size: 14px;
   font-weight: 500;
   color: #8F8F8F;
 }
-.auth__form-login::-ms-input-placeholder, .auth__form-pw::-ms-input-placeholder {
+.auth__form-login::-ms-input-placeholder, .auth__form-pw::-ms-input-placeholder, .auth .signup__form-login::-ms-input-placeholder, .auth .signup__form-pw::-ms-input-placeholder {
   font-size: 14px;
   font-weight: 500;
   color: #8F8F8F;
 }
-.auth__form-login::placeholder, .auth__form-pw::placeholder {
+.auth__form-login::placeholder, .auth__form-pw::placeholder, .auth .signup__form-login::placeholder, .auth .signup__form-pw::placeholder {
   font-size: 14px;
   font-weight: 500;
   color: #8F8F8F;
 }
-.auth__form-pw {
+.auth__form-login.error, .auth__form-pw.error, .auth .signup__form-login.error, .auth .signup__form-pw.error {
+  border-color: #D80000;
+}
+.auth__form-error-message, .auth .signup__form-error-message {
+  margin-top: 5px;
+  display: none;
+  font-size: 14px;
+  color: #D80000;
+}
+.auth__form-pw, .auth .signup__form-pw {
   margin-top: 20px;
 }
-.auth__form-btn {
+.auth__form-btn, .auth .signup__form-btn {
   margin-top: 20px;
   width: 250px;
   height: 40px;
