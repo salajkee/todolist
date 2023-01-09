@@ -40,6 +40,48 @@
         </div>
     </div>
 
+    <div class="permissions-modal">
+        <div class="permissions-modal__overlay"></div>
+        <div class="permissions-modal__wrapper">
+            <p class="permissions-modal__title">Settings</p>
+            <form class="permissions-modal__form" action="#">
+                <input class="permissions-modal__login" type="text">
+                <input class="permissions-modal__password" type="password">
+                <label>
+                    <input class="permissions-modal__showpw" type="checkbox">
+                    <span>Show Password</span>
+                </label>
+                <label>
+                    <input class="permissions-modal__makeadmin" type="checkbox">
+                    <span>Make admin</span>
+                </label>
+                <label>
+                    <input class="permissions-modal__generate" type="checkbox">
+                    <span>Generate</span>
+                </label>
+            </form>
+            <div class="permissions-modal__bot">
+                <div class="permissions-modal__active">
+                    <p class="permissions-modal__active-title">Active</p>
+                    <div class="permissions-modal__active-items">
+                        <div class="permissions-modal__item">canEdit</div>
+                        <div class="permissions-modal__item">canDelete</div>
+                        <div class="permissions-modal__item">canAdd</div>
+                    </div>
+                </div>
+                <div class="permissions-modal__available">
+                    <p class="permissions-modal__available-title">Available</p>
+                    <div class="permissions-modal__available-items">
+                    </div>
+                </div>
+            </div>
+            <div class="permissions-modal__btns">
+                <button class="permissions-modal__exit-btn">Exit</button>
+                <button class="permissions-modal__save-btn">Save</button>
+            </div>
+        </div>
+    </div>
+
     <script src="js/script.js" type="module"></script>
 </body>
 </html>

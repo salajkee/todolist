@@ -11,16 +11,17 @@ export default class Permissions {
     }
 
     permissions() {
-        // if(users) {
-        //     for (let i = 0; i < users.length; i++) {
-        //         let user = `<li><div class="permissions__users-list-inner">
-        //                     <p class="permissions__users-list-name">${users[i].login}</p>
-        //                     <button class="permissions__users-list-delete-btn" data-item="${i}">Delete</button>
-        //                     <button class="permissions__users-list-change-btn" data-item="${i}">Change</button>
-        //                 </div></li>`;
-        //         this.usersList.insertAdjacentHTML('beforeend', user);
-        //     }
-        // }
+        let usersData = JSON.parse(localStorage.getItem('users'));
+        if(usersData) {
+            for (let i = 0; i < usersData.length; i++) {
+                let user = `<li><div class="permissions__users-list-inner">
+                            <p class="permissions__users-list-name">${usersData[i].login}</p>
+                            <button class="permissions__users-list-delete-btn" data-item="${i}">Delete</button>
+                            <button class="permissions__users-list-change-btn" data-item="${i}">Change</button>
+                        </div></li>`;
+                this.usersList.insertAdjacentHTML('beforeend', user);
+            }
+        }
 
         this.generate.addEventListener('click', () => {
             let symbols = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 1, 2, 3, 4, 5, 6, 7, 8, 9];

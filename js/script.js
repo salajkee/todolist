@@ -12,6 +12,7 @@ import SignIn from './modules/signIn.js'
 import SignUp from './modules/signUp.js'
 import UserSettings from './modules/userSettings.js'
 import Permissions from './modules/permissions.js';
+import ChangeSettings from './modules/changeSettings.js';
 
 window.addEventListener('DOMContentLoaded', () => {
     try {
@@ -93,14 +94,29 @@ window.addEventListener('DOMContentLoaded', () => {
 
     try {
         let permissions = new Permissions('.permissions__adduser-form',
-                                            '.permissions__users-list',
-                                            '.permissions__adduser-form-login',
-                                            '.permissions__adduser-form-password',
-                                            '#permissions__adduser-form-showpw',
-                                            '#permissions__adduser-form-makeadmin',
-                                            '#permissions__adduser-form-generate',
-                                            '.permissions__adduser-form-btn');
+                                          '.permissions__users-list',
+                                          '.permissions__adduser-form-login',
+                                          '.permissions__adduser-form-password',
+                                          '#permissions__adduser-form-showpw',
+                                          '#permissions__adduser-form-makeadmin',
+                                          '#permissions__adduser-form-generate',
+                                          '.permissions__adduser-form-btn');
         permissions.permissions();
+    } catch(e){}
+
+    try {
+        let changeSettings = new ChangeSettings('.permissions__users-list-delete-btn',
+                                                '.permissions__users-list-change-btn',
+                                                '.permissions__users-list',
+                                                '.permissions-modal',
+                                                '.permissions-modal__login',
+                                                '.permissions-modal__password',
+                                                '.permissions-modal__showpw',
+                                                '.permissions-modal__makeadmin',
+                                                '.permissions-modal__generate',
+                                                '.permissions-modal__exit-btn',
+                                                '.permissions-modal__save-btn');
+        changeSettings.changeSettings();
     } catch(e){}
 
     try {

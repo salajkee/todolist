@@ -56,5 +56,14 @@ export default class UserSettings {
                 }
             }
         });
+
+        this.exitBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            this.login = currentUser.login;
+            this.password = currentUser.password;
+            this.confirmPassword = currentUser.password;
+            location.href="notes.html";
+        });
     }
 }
