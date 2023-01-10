@@ -7,7 +7,7 @@ export default class dragDrop {
         this.categoryDone = this.categoryNodes[2];
     }
 
-    dragDropp() {
+    render() {
         function dragOver(e){
             e.preventDefault();
         }

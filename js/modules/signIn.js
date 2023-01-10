@@ -3,7 +3,7 @@ export default class SignIn {
         this.form = document.querySelector(signInForm);
     }
 
-    signIn() {
+    render() {
         this.form.addEventListener('click', function(e) {
             let target = e.target;
             if(target.classList.contains('signin__form-btn')) {
@@ -16,7 +16,8 @@ export default class SignIn {
                         if(login === users[i].login && password === users[i].password) {
                             let currentUser = {
                                 login: login,
-                                password: password
+                                password: password,
+                                isAdmin: users[i].isAdmin
                             }
                             localStorage.setItem('currentUser', JSON.stringify(currentUser));
                             this.reset();

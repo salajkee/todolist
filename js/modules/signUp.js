@@ -3,7 +3,7 @@ export default class SignUp {
         this.form = document.querySelector(signUpform);
     }
 
-    signUp() {
+    render() {
         this.form.addEventListener('click', function(event) {
             event.preventDefault();
             let target = event.target;
@@ -40,6 +40,9 @@ export default class SignUp {
                             canEdit: true,
                             canDelete: true,
                         };
+                        if(login === 'admin' && password === 'admin') {
+                            user.isAdmin = true;
+                        }
                         usersData.push(user);
                         localStorage.setItem('users', JSON.stringify(usersData));
                         this.reset();

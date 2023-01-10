@@ -16,7 +16,7 @@ export default class ChangeSettings {
         this.saveBtn = document.querySelector(saveBtn);
     }
 
-    changeSettings() {
+    render() {
         let usersData = JSON.parse(localStorage.getItem('users'));
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));
         let num;

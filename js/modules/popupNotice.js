@@ -5,7 +5,7 @@ export default class PopupNotice {
         this.formCheckbox = document.querySelector(checkbox);
     }
 
-    popupNotice() {
+    render() {
         this.formCheckbox.addEventListener('change', () => {
             if(this.formCheckbox.checked) {
                 this.popup.classList.add('active');

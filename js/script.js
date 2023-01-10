@@ -13,71 +13,73 @@ import SignUp from './modules/signUp.js'
 import UserSettings from './modules/userSettings.js'
 import Permissions from './modules/permissions.js';
 import ChangeSettings from './modules/changeSettings.js';
+import LogOut from './modules/logOut.js';
+import OtherScripts from './modules/otherScripts.js';
 
 window.addEventListener('DOMContentLoaded', () => {
     try {
         let tabs = new Tabs('.tabs__nav-item', '.tabs__content', '.tabs__nav');
-        tabs.tab();
+        tabs.render();
     } catch(e) {}
 
     try {
         let authTabs = new Tabs('.auth__tabs-nav-item', '.auth__tabs-content', '.auth__tabs-nav');
-        authTabs.tab();
+        authTabs.render();
     } catch(e) {}
 
     try {
         let addLocalStorage = new AddLocalStorage('.header__form');
-        addLocalStorage.addKey();
+        addLocalStorage.render();
     } catch(e){}
 
     try {
         let addNote = new AddNote('.header__form', '.task__items', '.category');
-        addNote.addNote();
+        addNote.render();
     } catch(e){}
 
     try {
         let removeNote = new RemoveNote('.task', '.category');
-        removeNote.removeNote();
+        removeNote.render();
     } catch(e){}
         
     try {
         let saveNote = new SaveNote('.task__items', '.category');
-        saveNote.saveNote();
+        saveNote.render();
     } catch(e){}
 
     try {
         let markNote = new MarkNote('.task', '.category');
-        markNote.markNote();
+        markNote.render();
     } catch(e){}
 
     try {
         let popupNotice = new PopupNotice('.popup-notice', '.header__form-checkbox');
-        popupNotice.popupNotice();
+        popupNotice.render();
     } catch(e){}
 
     try {
         let searchTask = new SearchTask('.task__search');
-        searchTask.searchTask();
+        searchTask.render();
     } catch(e){}
 
     try {
         let editNote = new EditNote('.task', '.category', '.modal-edit');
-        editNote.editNote();
+        editNote.render();
     } catch(e){}
 
     try {
         let dragDrop = new DragDrop('.category');
-        dragDrop.dragDropp();
+        dragDrop.render();
     } catch(e){}
 
     try {
         let signIn = new SignIn('.signin__form');
-        signIn.signIn();
+        signIn.render();
     } catch(e){}
 
     try {
         let signUp = new SignUp('.signup__form');
-        signUp.signUp();
+        signUp.render();
     } catch(e){}
 
     try {
@@ -89,7 +91,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                             '.user__form-bio',
                                             '.user__form-exitBtn',
                                             '.user__form-saveBtn');
-        userSettings.userSettings();
+        userSettings.render();
     } catch(e){}
 
     try {
@@ -101,7 +103,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                           '#permissions__adduser-form-makeadmin',
                                           '#permissions__adduser-form-generate',
                                           '.permissions__adduser-form-btn');
-        permissions.permissions();
+        permissions.render();
     } catch(e){}
 
     try {
@@ -116,22 +118,16 @@ window.addEventListener('DOMContentLoaded', () => {
                                                 '.permissions-modal__generate',
                                                 '.permissions-modal__exit-btn',
                                                 '.permissions-modal__save-btn');
-        changeSettings.changeSettings();
+        changeSettings.render();
     } catch(e){}
 
     try {
-        let profileName = document.querySelector('.header__profile-name');
-        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        profileName.textContent = currentUser.login;
+        let logout = new LogOut('.logout-link');
+        logout.render();
     } catch(e) {}
 
     try {
-        let userLogin = document.querySelector('.user__form-login');
-        let userPassword = document.querySelector('.user__form-pw');
-        let userConfirmPassword = document.querySelector('.user__form-pw-confirm');
-        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        userLogin.value = currentUser.login;
-        userPassword.value = currentUser.password;
-        userConfirmPassword.value = currentUser.password;
+        let otherscripts = new OtherScripts();
+        otherscripts.render();
     } catch(e) {}
 });

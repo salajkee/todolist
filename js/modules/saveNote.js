@@ -7,7 +7,7 @@ export default class SaveNote {
         this.categoryDone = this.category.children[2];
     }
     
-    saveNote() {
+    render() {
         if(localStorage.getItem('notes')) {
             let data = JSON.parse(localStorage.getItem('notes'));
             for (let i = 0; i < data.length; i++) {

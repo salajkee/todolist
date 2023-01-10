@@ -11,7 +11,7 @@ export default class AddLocalStorage {
         this.count;
     }
 
-    addKey() {
+    render() {
         this.formBtn.addEventListener('click', (event) => {
             event.preventDefault();
             if(this.formDate.value !== '' && this.formNote.value !== '') {

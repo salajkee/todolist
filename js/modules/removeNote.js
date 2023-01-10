@@ -4,7 +4,7 @@ export default class RemoveNote {
         this.category = document.querySelector(category);
     }
 
-    removeNote() {
+    render() {
         this.task.addEventListener('click', (event) => {
             const target = event.target;
             if(target.classList.contains('task__item-delete')) {

@@ -13,7 +13,7 @@ export default class AddNote {
         this.categoryDone = this.categoryNodes[2];
     }
 
-    addNote() {
+    render() {
         this.formBtn.addEventListener('click', (event) => {
             event.preventDefault();
             if(this.formDate.value !== '' && this.formNote.value !== '') {

@@ -7,7 +7,7 @@ export default class MarkNote {
         this.categoryDone = this.category.children[2];
     }
 
-    markNote() {
+    render() {
         this.task.addEventListener('click', (event) => {
             let target = event.target;
             let targetPrev = target.previousElementSibling;

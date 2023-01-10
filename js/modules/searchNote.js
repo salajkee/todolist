@@ -3,7 +3,7 @@ export default class SearchTask {
         this.seachInput = document.querySelector(seachInput);
     }
 
-    searchTask() {
+    render() {
         this.seachInput.addEventListener('input', function() {
             let value = this.value.trim().toLowerCase();
             this.taskItems = document.querySelectorAll('.task__item');

@@ -23,7 +23,7 @@ export default class Tabs {
         this.tabs[i].classList.add(`${this.tabsItem}-active`);
     }
 
-    tab() {
+    render() {
         this.tabsWrapper.addEventListener('click', (event) => {
             let target = event.target;
 

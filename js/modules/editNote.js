@@ -8,7 +8,7 @@ export default class EditNote {
         this.num = null;
     }
 
-    editNote() {
+    render() {
         this.task.addEventListener('click', (event) => {
             const target = event.target;
             if(target.classList.contains('task__item-edit')) {

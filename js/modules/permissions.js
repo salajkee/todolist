@@ -10,7 +10,7 @@ export default class Permissions {
         this.addUserBtn = document.querySelector(addUserBtn);
     }
 
-    permissions() {
+    render() {
         let usersData = JSON.parse(localStorage.getItem('users'));
         if(usersData) {
             for (let i = 0; i < usersData.length; i++) {
