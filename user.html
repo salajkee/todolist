@@ -11,30 +11,20 @@
     <div class="user__wrapper">
         <p class="user__title">Settings</p>
         <form class="user__form" action="#">
-            <div class="user__form-block">
-                <label for="user-login">Login</label>
-                <input class="user__form-login" type="text" id="user-login" placeholder="Login">
-            </div>
-            <div class="user__form-block">
-                <label for="user-password">Password</label>
-                <input class="user__form-pw" type="password" id="user-password" placeholder="Password">
-            </div>
-            <div class="user__form-block">
-                <label for="user-confirm-pw">Confirm password</label>
-                <input class="user__form-pw-confirm" type="password" id="user-confirm-pw" placeholder="Confirm password">
-            </div>
-            <div class="user__form-block">
-                <input class="user__form-generate user__form-checkbox" type="checkbox" name="userGenerateCheckbox">
-                <label for="userGenerateCheckbox">Generate</label>
-            </div>
-            <div class="user__form-block">
-                <input class="user__form-showpw user__form-checkbox" type="checkbox" name="userShowPasswordCheckbox">
-                <label for="userShowPasswordCheckbox">Show Password</label>
-            </div>
-            <div class="user__form-block">
-                <textarea class="user__form-bio" name="userAbout"></textarea>
-            </div>
-            <div class="user__form-block">
+            <input class="user__form-login" type="text" placeholder="Login">
+            <p class="user__form-error-message"></p>
+            <input class="user__form-pw" type="password" placeholder="Password">
+            <input class="user__form-pw-confirm" type="password" placeholder="Confirm password">
+            <label>
+                <input class="user__form-generate user__form-checkbox" type="checkbox">
+                <span class="user__form-checkbox-text">Generate</span>
+            </label>
+            <label>
+                <input class="user__form-showpw user__form-checkbox" type="checkbox">
+                <span class="user__form-checkbox-text">Show Password</span>
+            </label>
+            <textarea class="user__form-bio"></textarea>
+            <div class="user__form-btns">
                 <button class="user__form-exitBtn">Exit</button>
                 <button class="user__form-saveBtn">Save</button>
             </div>

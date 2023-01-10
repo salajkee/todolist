@@ -14,8 +14,8 @@ export default class Permissions {
         let usersData = JSON.parse(localStorage.getItem('users'));
         if(usersData) {
             for (let i = 0; i < usersData.length; i++) {
-                let user = `<li><div class="permissions__users-list-inner">
-                            <p class="permissions__users-list-name">${usersData[i].login}</p>
+                let user = `<li class="permissions__users-list-item-${i}"><div class="permissions__users-list-inner">
+                            <p class="permissions__users-list-name permissions__name-${i}">${usersData[i].login}</p>
                             <button class="permissions__users-list-delete-btn" data-item="${i}">Delete</button>
                             <button class="permissions__users-list-change-btn" data-item="${i}">Change</button>
                         </div></li>`;
@@ -47,36 +47,55 @@ export default class Permissions {
             }
         });
 
-        // this.addUserBtn.addEventListener('click', (e) => {
-        //     e.preventDefault();
-        //     let admin;
-        //     if(this.makeAdmin.checked) {
-        //         admin = true;
-        //     } else {
-        //         admin = false;
-        //     }
-        //     let data = {
-        //         id: num,
-        //         login: this.login.value,
-        //         password: this.password.value,
-        //         isAdmin: admin,
-        //         permissions: [
-        //             {
-        //                 canAdd: true,
-        //                 canDelete: true,
-        //                 canEdit: true
-        //             }
-        //         ]
-        //     }
-        //     users.push(data);
-        //     let user = `<li><div class="permissions__users-list-inner">
-        //                     <p class="permissions__users-list-name">${users[num].login}</p>
-        //                     <button class="permissions__users-list-delete-btn" data-item="${num}">Delete</button>
-        //                     <button class="permissions__users-list-change-btn" data-item="${num}">Change</button>
-        //                 </div></li>`;
-        //     this.usersList.insertAdjacentHTML('beforeend', user);
-        //     this.permissionsForm.reset();
-        //     console.log(users);
-        // });
+        this.login.addEventListener('input', () => {
+            for (let i = 0; i < usersData.length; i++) {
+                if(this.login.value === usersData[i].login) {
+                    this.login.classList.add('error');
+                    this.login.nextElementSibling.style.display = 'block';
+                    break;
+                } else {
+                    this.login.nextElementSibling.style.display = 'none';
+                    this.login.classList.remove('error');
+                }
+            }
+        });
+
+        this.addUserBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            let admin;
+            if(this.makeAdmin.checked) {
+                admin = true;
+            } else {
+                admin = false;
+            }
+            if(this.login.value.length > 4 && this.password.value.length > 0) {
+                let user = {
+                    login: this.login.value,
+                    password: this.password.value,
+                    isAdmin: admin,
+                    canAdd: true,
+                    canEdit: true,
+                    canDelete: true,
+                };
+                if(this.login.value === 'admin' && this.password.value === 'admin') {
+                    user.isAdmin = true;
+                }
+                usersData.push(user);
+                localStorage.setItem('users', JSON.stringify(usersData));
+                let num = usersData.length - 1;
+                let userNode = `<li><div class="permissions__users-list-inner">
+                            <p class="permissions__users-list-name">${usersData[num].login}</p>
+                            <button class="permissions__users-list-delete-btn" data-item="${num}">Delete</button>
+                            <button class="permissions__users-list-change-btn" data-item="${num}">Change</button>
+                        </div></li>`;
+                this.usersList.insertAdjacentHTML('beforeend', userNode);
+                this.permissionsForm.reset();
+            } else if(this.login.value.length < 5) {
+                this.permissionsForm.children[1].textContent = 'Your account must be at least 5 characters';
+                this.permissionsForm.children[1].style.display = 'block';
+            } else {
+                this.permissionsForm.children[1].style.display = 'none';
+            }
+        });
     }
 }

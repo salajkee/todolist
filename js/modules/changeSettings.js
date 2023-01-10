@@ -1,5 +1,5 @@
 export default class ChangeSettings {
-    constructor(deleteBtn, changeBtn, usersList, modal, login, password, showpw, makeAdmin, generate, exitBtn, saveBtn) {
+    constructor(deleteBtn, changeBtn, usersList, modal, login, password, showpw, makeAdmin, generate, exitBtn, saveBtn, activeItems, availableItems) {
         this.deleteBtn = document.querySelectorAll(deleteBtn);
         this.changeBtn = document.querySelectorAll(changeBtn);
         this.usersList = document.querySelector(usersList);
@@ -14,6 +14,8 @@ export default class ChangeSettings {
         this.generate = document.querySelector(generate);
         this.exitBtn = document.querySelector(exitBtn);
         this.saveBtn = document.querySelector(saveBtn);
+        this.activeItems = document.querySelector(activeItems)
+        this.availableItems = document.querySelector(availableItems)
     }
 
     render() {
@@ -29,6 +31,42 @@ export default class ChangeSettings {
                 this.login.value = usersData[num].login;
                 this.password.value = usersData[num].password;
             });
+        });
+
+        this.deleteBtn.forEach(deleteBtn => {
+            deleteBtn.addEventListener('click', () => {
+                num = deleteBtn.getAttribute('data-item');
+                let name = deleteBtn.previousElementSibling.textContent;
+                let item = document.querySelector(`.permissions__users-list-item-${num}`);
+                if(name === currentUser.login) {
+                    for (let i = 0; i < usersData.length; i++) {
+                        if(name === usersData[i].login) {
+                            usersData.splice(i, 1);
+                            localStorage.setItem('users', JSON.stringify(usersData));
+                            break;
+                        }
+                    }
+                    localStorage.removeItem('currentUser');
+                    item.remove();
+                    location.href = 'auth.html';
+                } else {
+                    for (let i = 0; i < usersData.length; i++) {
+                        if(name === usersData[i].login) {
+                            usersData.splice(i, 1);
+                            localStorage.setItem('users', JSON.stringify(usersData));
+                            break;
+                        }
+                    }
+                    item.remove();
+                }
+            });
+        });
+
+        this.login.addEventListener('change', () => {
+            if(this.login.classList.contains('error') && this.login.nextElementSibling.style.display == 'block') {
+                this.login.classList.remove('error');
+                this.login.nextElementSibling.style.display = 'none';
+            }
         });
 
         this.showpw.addEventListener('click', () => {
@@ -73,23 +111,84 @@ export default class ChangeSettings {
         });
 
         this.saveBtn.addEventListener('click', () => {
-            if(this.login.value !== usersData[num].login) {
-                for (let i = 0; i < usersData.length; i++) {
-                    if(currentUser.login === usersData[i].login) {
-                        usersData[i].login = this.login.value;
-                        usersData[i].password = this.password.value;
+            if(this.login.value !== usersData[num].login || this.makeAdmin) {
+                if(this.login.value.length > 4) {
+                    if(currentUser.login === usersData[num].login) {
                         currentUser.login = this.login.value;
                         currentUser.password = this.password.value;
-                        localStorage.setItem('users', JSON.stringify(usersData));
-                        localStorage.setItem('currentUser', JSON.stringify(currentUser));
-                        this.usersList.children[num].children[0].children[0].textContent = this.login.value;
-                        this.modal.classList.remove('active');
-                        this.modalOverlay.classList.remove('active');
-                        this.modalWrapper.classList.remove('active');
-                        this.modalForm.reset();
                     }
+                    usersData[num].login = this.login.value;
+                    usersData[num].password = this.password.value;
+                    localStorage.setItem('users', JSON.stringify(usersData));
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                    this.usersList.children[num].children[0].children[0].textContent = this.login.value;
+                    this.modal.classList.remove('active');
+                    this.modalOverlay.classList.remove('active');
+                    this.modalWrapper.classList.remove('active');
+                    this.modalForm.reset();
+                } else if(this.login.value.length < 5) {
+                    this.login.classList.add('error');
+                    this.login.nextElementSibling.style.display = 'block';
+                } else {
+                    this.login.classList.remove('error');
+                    this.login.nextElementSibling.style.display = 'none';
                 }
             }
         });
+
+        // changesettings drag&drop
+
+        let canItems = document.querySelectorAll('.permissions-modal__item');
+        let dragItem = null;
+
+        function dragStart() {
+            dragItem = this;
+        }
+
+        function dragEnd() {
+            dragItem = null;
+        }
+
+        canItems.forEach(canItem => {
+            canItem.addEventListener('dragstart', dragStart);
+            canItem.addEventListener('dragend', dragEnd);
+        });
+
+        function dragOver(e){
+            e.preventDefault();
+        }
+
+        function dragDrop(){
+            this.append(dragItem);
+            canItems.forEach(canItem => {
+                let canName = canItem.getAttribute('data-item');
+                let name = document.querySelector(`.permissions__name-${num}`);
+                let usersData = JSON.parse(localStorage.getItem('users'));
+                if(canItem.parentNode.classList.contains('permissions-modal__available-items')) {
+                    for (let i = 0; i < usersData.length; i++) {
+                        if(name.textContent === usersData[i].login) {
+                            canName === 'canEdit' ? usersData[i].canEdit = false : canName;
+                            canName === 'canDelete' ? usersData[i].canDelete = false : canName;
+                            canName === 'canAdd' ? usersData[i].canAdd = false : canName;
+                            localStorage.setItem('users', JSON.stringify(usersData));
+                        }
+                    }
+                } else {
+                    for (let i = 0; i < usersData.length; i++) {
+                        if(name.textContent === usersData[i].login) {
+                            canName === 'canEdit' ? usersData[i].canEdit = true : canName;
+                            canName === 'canDelete' ? usersData[i].canDelete = true : canName;
+                            canName === 'canAdd' ? usersData[i].canAdd = true : canName;
+                            localStorage.setItem('users', JSON.stringify(usersData));
+                        }
+                    }
+                }
+            });
+        }
+
+        this.activeItems.addEventListener('drop', dragDrop);
+        this.activeItems.addEventListener('dragover', dragOver);
+        this.availableItems.addEventListener('drop', dragDrop);
+        this.availableItems.addEventListener('dragover', dragOver);
     }
 }

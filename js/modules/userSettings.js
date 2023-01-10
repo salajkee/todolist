@@ -11,6 +11,12 @@ export default class UserSettings {
     }
 
     render() {
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        let usersData = JSON.parse(localStorage.getItem('users'));
+        this.login.value = currentUser.login;
+        this.password.value = currentUser.password;
+        this.confirmPassword.value = currentUser.password;
+
         this.generate.addEventListener('click', () => {
             let symbols = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 1, 2, 3, 4, 5, 6, 7, 8, 9];
             let generatePassword = '';
@@ -41,9 +47,7 @@ export default class UserSettings {
 
         this.saveBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            let usersData = JSON.parse(localStorage.getItem('users'));
-            if(this.login !== currentUser.login) {
+            if(this.login.value !== currentUser.login || this.password.value !== currentUser.password) {
                 for (let i = 0; i < usersData.length; i++) {
                     if(currentUser.login === usersData[i].login) {
                         usersData[i].login = this.login.value;

@@ -21,6 +21,7 @@
                 <p class="permissions__adduser-title">Add new user</p>
                 <form action="#" class="permissions__adduser-form">
                     <input class="permissions__adduser-form-input permissions__adduser-form-login" type="text" placeholder="Login">
+                    <p class="permissions__adduser-form-error-message">That username is taken. Try another.</p>
                     <input class="permissions__adduser-form-input permissions__adduser-form-password" type="password" placeholder="Password">
                     <div class="permissions__adduser-form-block">
                         <input id="permissions__adduser-form-showpw" type="checkbox">
@@ -46,6 +47,9 @@
             <p class="permissions-modal__title">Settings</p>
             <form class="permissions-modal__form" action="#">
                 <input class="permissions-modal__login" type="text">
+                <p class="permissions-modal__error-message">
+                    Usernames must be at least 5 characters
+                </p>
                 <input class="permissions-modal__password" type="password">
                 <label>
                     <input class="permissions-modal__showpw" type="checkbox">
@@ -64,9 +68,9 @@
                 <div class="permissions-modal__active">
                     <p class="permissions-modal__active-title">Active</p>
                     <div class="permissions-modal__active-items">
-                        <div class="permissions-modal__item">canEdit</div>
-                        <div class="permissions-modal__item">canDelete</div>
-                        <div class="permissions-modal__item">canAdd</div>
+                        <div class="permissions-modal__item" data-item="canEdit" draggable="true">canEdit</div>
+                        <div class="permissions-modal__item" data-item="canDelete" draggable="true">canDelete</div>
+                        <div class="permissions-modal__item" data-item="canAdd" draggable="true">canAdd</div>
                     </div>
                 </div>
                 <div class="permissions-modal__available">

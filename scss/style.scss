@@ -569,32 +569,31 @@
     }
     &__form {
         width: 350px;
-        &-block {
-            margin-top: 15px;
-            &:nth-of-type(1) {
-                margin-top: 25px;
+        margin-top: 30px;
+        &-login {
+            &.error {
+                border-color: $errorStatus;
             }
-            &:nth-of-type(4) {
-                display: inline-flex;
-                align-items: center;
-                margin-right: 20px;
-            }
-            &:nth-of-type(5) {
-                display: inline-flex;
-                align-items: center;
-            }
-            &:last-of-type {
-                display: flex;
-                align-items: center;
-            }
+        }
+        &-error-message {
+            margin-top: 5px;
+            display: none;
+            font-size: 14px;
+            color: $errorStatus;
+        }
+        &-pw, &-pw-confirm {
+            display: block;
+            margin-top: 20px;
         }
         label {
-            font-size: 14px;
-            font-weight: 500;
-            color: $textColor;
+            margin-top: 20px;
+            display: inline-flex;
+            align-items: center;
+            &:nth-of-type(2) {
+                margin-left: 20px;
+            }
         }
         input {
-            margin-top: 5px;
             width: 100%;
             height: 40px;
             padding: 5px 20px;
@@ -609,10 +608,11 @@
             }
         }
         textarea {
+            margin-top: 20px;
             width: 100%;
             min-width: 100%;
             min-height: 100px;
-            padding: 5px 20px;
+            padding: 10px 20px;
             font-size: 14px;
             font-weight: 500;
             color: #414141;
@@ -626,6 +626,16 @@
             margin: 0 10px 0 0 !important;
             width: 18px !important;
             height: 18px !important;
+            &-text {
+                font-size: 14px;
+                color: $textColor;
+            }
+        }
+        &-btns {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
         }
         &-exitBtn, &-saveBtn {
             width: 130px;
@@ -639,7 +649,7 @@
             background-color: $blueColor;
         }
         &-saveBtn {
-            margin-left: auto;
+            margin-left: 20px;
         }
     }
 }
@@ -738,6 +748,15 @@
                 &:nth-of-type(1) {
                     margin-top: 0;
                 }
+                &.error {
+                    border-color: $errorStatus;
+                }
+            }
+            &-error-message {
+                margin-top: 5px;
+                display: none;
+                font-size: 14px;
+                color: $errorStatus;
             }
             &-block {
                 margin-top: 15px;
@@ -835,6 +854,15 @@
             border: 1px solid #8F8F8F;
             outline: none;
             background-color: $white;
+            &.error {
+                border-color: $errorStatus;
+            }
+        }
+        &__error-message {
+            margin-top: 5px;
+            display: none;
+            font-size: 14px;
+            color: $errorStatus;
         }
         &__password {
             margin-top: 25px;
@@ -874,6 +902,7 @@
             }
             &-items {
                 display: flex;
+                height: 130px;
                 flex-direction: column;
                 align-items: center;
             }

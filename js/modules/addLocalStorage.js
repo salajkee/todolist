@@ -14,6 +14,7 @@ export default class AddLocalStorage {
     render() {
         this.formBtn.addEventListener('click', (event) => {
             event.preventDefault();
+            let currentUser = JSON.parse(localStorage.getItem('currentUser'));
             if(this.formDate.value !== '' && this.formNote.value !== '') {
                 if(localStorage.getItem('notes') === null) {
                     localStorage.setItem('notes', JSON.stringify(this.notes));
@@ -35,9 +36,9 @@ export default class AddLocalStorage {
                 while(this.date.includes('-')) {
                     this.date = this.date.replace('-', '.');
                 }
-    
+
                 this.data = {
-                    userId: 0,
+                    user: currentUser.login,
                     important: this.important,
                     done: false,
                     noteName: this.formNote.value,

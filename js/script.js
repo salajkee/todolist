@@ -117,7 +117,9 @@ window.addEventListener('DOMContentLoaded', () => {
                                                 '.permissions-modal__makeadmin',
                                                 '.permissions-modal__generate',
                                                 '.permissions-modal__exit-btn',
-                                                '.permissions-modal__save-btn');
+                                                '.permissions-modal__save-btn',
+                                                '.permissions-modal__active-items',
+                                                '.permissions-modal__available-items');
         changeSettings.render();
     } catch(e){}
 
