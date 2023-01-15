@@ -23,33 +23,25 @@ export default class Permissions {
         }
     }
 
+    generatePassword() {
+        let symbols = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 1, 2, 3, 4, 5, 6, 7, 8, 9];
+        let generatePassword = '';
+
+        for (let i = 0; i < 8; i++) {
+            let num = Math.floor(Math.random() * symbols.length);
+            generatePassword += symbols[num];
+        }
+
+        if(this.generate.checked) {
+            this.password.value = generatePassword;
+        } else {
+            this.password.value = '';
+        }
+    }
+
     render() {
         let usersData = JSON.parse(localStorage.getItem('users'));
         this.saveUserList(usersData);
-
-        this.generate.addEventListener('click', () => {
-            let symbols = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 1, 2, 3, 4, 5, 6, 7, 8, 9];
-            let generatePassword = '';
-
-            for (let i = 0; i < 8; i++) {
-                let num = Math.floor(Math.random() * symbols.length);
-                generatePassword += symbols[num];
-            }
-
-            if(this.generate.checked) {
-                this.password.value = generatePassword;
-            } else {
-                this.password.value = '';
-            }
-        });
-
-        this.showPw.addEventListener('click', () => {
-            if(this.showPw.checked) {
-                this.password.setAttribute('type', 'text');
-            } else {
-                this.password.setAttribute('type', 'password');
-            }
-        });
 
         this.login.addEventListener('input', () => {
             let usersData = JSON.parse(localStorage.getItem('users'));
@@ -66,9 +58,21 @@ export default class Permissions {
             }
         });
 
+        this.generate.addEventListener('click', () => {
+            this.generatePassword();
+        });
+
+        this.showPw.addEventListener('click', () => {
+            if(this.showPw.checked) {
+                this.password.setAttribute('type', 'text');
+            } else {
+                this.password.setAttribute('type', 'password');
+            }
+        });
+
         this.addUserBtn.addEventListener('click', (e) => {
-            e.preventDefault();
             let usersData = JSON.parse(localStorage.getItem('users'));
+            e.preventDefault();
             let admin;
             if(this.makeAdmin.checked) {
                 admin = true;
@@ -76,7 +80,7 @@ export default class Permissions {
                 admin = false;
             }
             if(!this.login.classList.contains('error')) {
-                if(this.login.value.length > 4 && this.password.value.length > 0) {
+                if(this.login.value.length >= 5 && this.password.value.length > 0) {
                     let user = {
                         login: this.login.value,
                         password: this.password.value,
@@ -85,18 +89,15 @@ export default class Permissions {
                         canEdit: true,
                         canDelete: true,
                     };
-                    if(this.login.value === 'admin' && this.password.value === 'admin') {
-                        user.isAdmin = true;
-                    }
                     usersData.push(user);
-                    localStorage.setItem('users', JSON.stringify(usersData));
                     let num = usersData.length - 1;
-                    let userNode = `<li class="permissions__users-list-item-${num}"><div class="permissions__users-list-inner">
+                    let userItem = `<li class="permissions__users-list-item-${num}"><div class="permissions__users-list-inner">
                                 <p class="permissions__users-list-name permissions__name-${num}">${usersData[num].login}</p>
                                 <button class="permissions__users-list-delete-btn" data-item="${num}">Delete</button>
                                 <button class="permissions__users-list-change-btn" data-item="${num}">Change</button>
                             </div></li>`;
-                    this.usersList.insertAdjacentHTML('beforeend', userNode);
+                    this.usersList.insertAdjacentHTML('beforeend', userItem);
+                    localStorage.setItem('users', JSON.stringify(usersData));
                     this.permissionsForm.reset();
                 } else if(this.login.value.length < 5) {
                     this.permissionsForm.children[1].textContent = 'Your account must be at least 5 characters';

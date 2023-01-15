@@ -162,6 +162,7 @@ export default class ChangeSettings {
 
         // changesettings drag&drop
 
+        let canItems = document.querySelectorAll('.permissions-modal__item');
         let dragItem = null;
 
         function dragStart() {
@@ -172,20 +173,9 @@ export default class ChangeSettings {
             dragItem = null;
         }
 
-        this.activeItems.addEventListener('mousemove', (e) => {
-            let target = e.target;
-            if(target.classList.contains('permissions-modal__item')) {
-                target.addEventListener('dragstart', dragStart);
-                target.addEventListener('dragend', dragEnd);
-            }
-        });
-
-        this.availableItems.addEventListener('mousemove', (e) => {
-            let target = e.target;
-            if(target.classList.contains('permissions-modal__item')) {
-                target.addEventListener('dragstart', dragStart);
-                target.addEventListener('dragend', dragEnd);
-            }
+        canItems.forEach(canItem => {
+            canItem.addEventListener('dragstart', dragStart);
+            canItem.addEventListener('dragend', dragEnd);
         });
 
         function dragOver(e){
@@ -194,7 +184,6 @@ export default class ChangeSettings {
 
         function dragDrop(){
             this.append(dragItem);
-            let canItems = document.querySelectorAll('.permissions-modal__item');
             canItems.forEach(canItem => {
                 let canName = canItem.getAttribute('data-item');
                 let name = document.querySelector(`.permissions__name-${dataItem}`);

@@ -100,9 +100,9 @@ window.addEventListener('DOMContentLoaded', () => {
                                           '.permissions__users-list',
                                           '.permissions__adduser-form-login',
                                           '.permissions__adduser-form-password',
-                                          '#permissions__adduser-form-showpw',
-                                          '#permissions__adduser-form-makeadmin',
-                                          '#permissions__adduser-form-generate',
+                                          '.permissions__adduser-form-showpw',
+                                          '.permissions__adduser-form-makeadmin',
+                                          '.permissions__adduser-form-generate',
                                           '.permissions__adduser-form-btn');
         permissions.render();
     } catch(e){}

@@ -1049,7 +1049,7 @@ body {
   font-size: 14px;
   color: #D80000;
 }
-.permissions__adduser-form-block {
+.permissions__adduser-form label {
   margin-top: 15px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1058,29 +1058,29 @@ body {
       -ms-flex-align: center;
           align-items: center;
 }
-.permissions__adduser-form-block label {
-  font-size: 14px;
-  margin-left: 5px;
-}
-.permissions__adduser-form-block input {
-  width: 18px;
-  height: 18px;
-  margin: 0;
-}
-.permissions__adduser-form-block:nth-of-type(1) {
+.permissions__adduser-form label:nth-of-type(1) {
   -webkit-box-flex: 50%;
       -ms-flex: 50%;
           flex: 50%;
 }
-.permissions__adduser-form-block:nth-of-type(2) {
+.permissions__adduser-form label:nth-of-type(2) {
   -webkit-box-flex: 50%;
       -ms-flex: 50%;
           flex: 50%;
 }
-.permissions__adduser-form-block:nth-of-type(3) {
+.permissions__adduser-form label:nth-of-type(3) {
   -webkit-box-flex: 100%;
       -ms-flex: 100%;
           flex: 100%;
+}
+.permissions__adduser-form label span {
+  font-size: 14px;
+  margin-left: 5px;
+}
+.permissions__adduser-form-makeadmin, .permissions__adduser-form-generate, .permissions__adduser-form-showpw {
+  width: 18px;
+  height: 18px;
+  margin: 0;
 }
 .permissions__adduser-form-btn {
   margin: 15px auto 0;
