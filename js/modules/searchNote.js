@@ -1,16 +1,16 @@
 export default class SearchTask {
-    constructor(seachInput) {
-        this.seachInput = document.querySelector(seachInput);
+    constructor(searchInput) {
+        this.searchInput = document.querySelector(searchInput);
     }
 
     render() {
-        this.seachInput.addEventListener('input', function() {
+        this.searchInput.addEventListener('input', function() {
             let value = this.value.trim().toLowerCase();
             this.taskItems = document.querySelectorAll('.task__item');
             this.taskItemName = document.querySelectorAll('.task__item-name');
             if(value != '') {
                 this.taskItemName.forEach((itemName, i) => {
-                    if(itemName.textContent.search(value) == -1) {
+                    if(itemName.textContent.toLowerCase().search(value) == -1) {
                         this.taskItems[i].style.display = 'none';
                     } else {
                         this.taskItems[i].style.display = 'flex';

@@ -67,7 +67,7 @@ export default class UserSettings {
             this.login = currentUser.login;
             this.password = currentUser.password;
             this.confirmPassword = currentUser.password;
-            location.href="notes.html";
+            location.href = 'notes.html';
         });
     }
 }

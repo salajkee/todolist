@@ -1,3 +1,5 @@
+import PopupNotice from './popupNotice.js';
+
 export default class SignUp {
     constructor(signUpform) {
         this.form = document.querySelector(signUpform);
@@ -14,9 +16,11 @@ export default class SignUp {
                     for (let i = 0; i < usersData.length; i++) {
                         if(this.value === usersData[i].login) {
                             this.classList.add('error');
+                            this.nextElementSibling.textContent = 'That username is taken. Try another.';
                             this.nextElementSibling.style.display = 'block';
                             break;
                         } else {
+                            this.nextElementSibling.textContent = '';
                             this.nextElementSibling.style.display = 'none';
                             this.classList.remove('error');
                         }
@@ -27,30 +31,29 @@ export default class SignUp {
                 if(localStorage.getItem('users') === null) {
                     localStorage.setItem('users', JSON.stringify(users));
                 }
-                let login = this.children[0].value;
-                let password = this.children[2].value;
                 let usersData = JSON.parse(localStorage.getItem('users'));
                 if(!this.children[0].classList.contains('error')) {
-                    if(login.length > 4 && password.length > 0) {
+                    if(this.children[0].value.length >= 5 && this.children[2].value.length > 0) {
                         let user = {
-                            login: login,
-                            password: password,
+                            login: this.children[0].value,
+                            password: this.children[2].value,
                             isAdmin: false,
                             canAdd: true,
                             canEdit: true,
                             canDelete: true,
                         };
-                        if(login === 'admin' && password === 'admin') {
+                        if(this.children[0].value === 'admin' && this.children[2].value === 'admin') {
                             user.isAdmin = true;
                         }
                         usersData.push(user);
                         localStorage.setItem('users', JSON.stringify(usersData));
+                        let popupNotice = new PopupNotice('.popup-notice');
+                        popupNotice.popupNotice('You have successfully registered!');
                         this.reset();
-                    } else if(login.length < 5) {
-                        this.children[1].textContent = 'Your account must be at least 5 characters';
+                    } else if(this.children[0].value.length < 5) {
+                        this.children[0].classList.add('error');
+                        this.children[1].textContent = 'Your account must be at least 5 characters.';
                         this.children[1].style.display = 'block';
-                    } else {
-                        this.children[1].style.display = 'none';
                     }
                 }
             }

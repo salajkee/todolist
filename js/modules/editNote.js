@@ -12,12 +12,17 @@ export default class EditNote {
         this.task.addEventListener('click', (event) => {
             const target = event.target;
             if(target.classList.contains('task__item-edit')) {
-                this.modal.classList.add('active');
-                this.num = target.getAttribute('data-item');
-                let inputEdit = document.querySelector('.modal-edit__input');
-                let targetParent = target.parentNode;
-                let noteValue = targetParent.children[1].textContent;
-                inputEdit.value = noteValue;
+                let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+                if(currentUser.canEdit) {
+                    this.modal.classList.add('active');
+                    this.num = target.getAttribute('data-item');
+                    let inputEdit = document.querySelector('.modal-edit__input');
+                    let targetParent = target.parentNode;
+                    let noteValue = targetParent.children[1].textContent;
+                    inputEdit.value = noteValue;
+                } else {
+                    alert('You don’t have permission to modify');
+                }
             }
         });
         this.category.addEventListener('click', (event) => {

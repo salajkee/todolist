@@ -18,6 +18,5 @@ export default class OtherScripts {
         userPassword.value = currentUser.password;
 
         userConfirmPassword.value = currentUser.password;
-
     }
 }

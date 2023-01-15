@@ -17,11 +17,14 @@ export default class SignIn {
                             let currentUser = {
                                 login: login,
                                 password: password,
-                                isAdmin: users[i].isAdmin
+                                isAdmin: users[i].isAdmin,
+                                canAdd: users[i].canAdd,
+                                canEdit: users[i].canEdit,
+                                canDelete: users[i].canDelete,
                             }
                             localStorage.setItem('currentUser', JSON.stringify(currentUser));
                             this.reset();
-                            location.href="notes.html";
+                            location.href = 'notes.html';
                         }
                     }
                 }

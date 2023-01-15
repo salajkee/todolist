@@ -119,6 +119,7 @@ body {
 }
 
 .header {
+  position: fixed;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -319,6 +320,8 @@ body {
   display: flex;
 }
 .tabs__nav {
+  position: fixed;
+  top: 80px;
   width: 250px;
   height: calc(100vh - 85px);
   padding: 0;
@@ -341,7 +344,9 @@ body {
   background-color: #1CB9FC;
 }
 .tabs__content {
+  margin-top: 80px;
   width: calc(100% - 250px);
+  margin-left: 250px;
 }
 
 .task {
@@ -537,7 +542,7 @@ body {
 
 .popup-notice {
   position: fixed;
-  right: -150px;
+  right: -100%;
   bottom: 50px;
   padding: 10px 25px;
   -webkit-transition: right 0.5s ease-in-out;
@@ -694,6 +699,10 @@ body {
   font-weight: 400;
   color: #414141;
   cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .auth__tabs-nav-item:first-of-type {
   margin-right: 30px;
@@ -965,10 +974,23 @@ body {
       -ms-flex-align: center;
           align-items: center;
 }
+.permissions__users-list-inner .your-login {
+  margin-left: auto;
+  padding: 5px 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  border: none;
+  background-color: #70C05B;
+}
 .permissions__users-list-name {
   font-size: 16px;
   font-weight: 500;
   margin-right: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
 }
 .permissions__users-list-delete-btn, .permissions__users-list-change-btn {
   margin-left: auto;

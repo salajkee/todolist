@@ -4,7 +4,6 @@ import AddNote from './modules/addNote.js';
 import RemoveNote from './modules/removeNote.js';
 import MarkNote from './modules/markNote.js';
 import SaveNote from './modules/saveNote.js';
-import PopupNotice from './modules/popupNotice.js';
 import DragDrop from './modules/dragDrop.js';
 import SearchTask from './modules/searchNote.js';
 import EditNote from './modules/editNote.js'
@@ -17,6 +16,13 @@ import LogOut from './modules/logOut.js';
 import OtherScripts from './modules/otherScripts.js';
 
 window.addEventListener('DOMContentLoaded', () => {
+    try {
+        let bb = document.querySelector('body');
+        if(bb.classList.contains('main-page')) {
+            location.href = 'auth.html';
+        }
+    } catch(e) {}
+
     try {
         let tabs = new Tabs('.tabs__nav-item', '.tabs__content', '.tabs__nav');
         tabs.render();
@@ -50,11 +56,6 @@ window.addEventListener('DOMContentLoaded', () => {
     try {
         let markNote = new MarkNote('.task', '.category');
         markNote.render();
-    } catch(e){}
-
-    try {
-        let popupNotice = new PopupNotice('.popup-notice', '.header__form-checkbox');
-        popupNotice.render();
     } catch(e){}
 
     try {

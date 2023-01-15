@@ -12,6 +12,7 @@
 }
 
 .header {
+    position: fixed;
     width: 100%;
     display: flex;
     align-items: center;
@@ -164,6 +165,8 @@
 .tabs {
     display: flex;
     &__nav {
+        position: fixed;
+        top: 80px;
         width: 250px;
         height: calc(100vh - 85px);
         padding: 0;
@@ -184,7 +187,9 @@
         }
     }
     &__content {
+        margin-top: 80px;
         width: calc(100% - 250px);
+        margin-left: 250px;
     }
 }
 
@@ -351,7 +356,7 @@
 
 .popup-notice {
     position: fixed;
-    right: -150px;
+    right: -100%;
     bottom: 50px;
     padding: 10px 25px;
     transition: right .5s ease-in-out;
@@ -484,6 +489,7 @@
                 font-weight: 400;
                 color: $textColor;
                 cursor: pointer;
+                user-select: none;
                 &-active {
                     font-weight: 500;
                     color: $blueColor;
@@ -700,11 +706,23 @@
             &-inner {
                 display: flex;
                 align-items: center;
+                .your-login {
+                    margin-left: auto;
+                    padding: 5px 10px;
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: $white;
+                    border: none;
+                    background-color: $statusDone;
+                }
             }
             &-name {
                 font-size: 16px;
                 font-weight: 500;
                 margin-right: 20px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
             &-delete-btn, &-change-btn {
                 margin-left: auto;

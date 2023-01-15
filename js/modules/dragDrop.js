@@ -7,7 +7,6 @@ export default class dragDrop {
     }
 
     render() {
-        let categoryTaskItems = document.querySelectorAll('.category__task-item');
         let dragItem = null;
 
         function dragStart() {
@@ -18,17 +17,21 @@ export default class dragDrop {
             dragItem = null;
         }
 
-        categoryTaskItems.forEach(categoryTaskItem => {
-            categoryTaskItem.addEventListener('dragstart', dragStart);
-            categoryTaskItem.addEventListener('dragend', dragEnd);
-        });
-
         function dragOver(e){
             e.preventDefault();
         }
 
+        this.category.addEventListener('mousemove', (e) => {
+            let target = e.target;
+            if(target.classList.contains('category__task-item')) {
+                target.addEventListener('dragstart', dragStart);
+                target.addEventListener('dragend', dragEnd);
+            }
+        });
+
         function dragDrop(){
             this.append(dragItem);
+            let categoryTaskItems = document.querySelectorAll('.category__task-item');
             categoryTaskItems.forEach(categoryTaskItem => {
                 if(categoryTaskItem.parentNode.classList.contains('category__important')) {
                     let data = JSON.parse(localStorage.getItem('notes'));
